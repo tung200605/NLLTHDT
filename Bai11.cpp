@@ -13,14 +13,14 @@ public:
     monhoc()
     {
         int mamh = 0;
-        char tenmh[30];
+        char tenmh[0];
         float dtb = 0;
         int sotc = 0;
     };
     ~monhoc()
     {
         int mamh = 0;
-        char tenmh[30];
+        char tenmh[0];
         float dtb = 0;
         int sotc = 0;
     };
@@ -30,31 +30,34 @@ public:
     {
         return sotc;
     };
-    int DTB()
+    float DTB()
     {
         return dtb;
     };
 };
+
 void monhoc::nhap1()
 {
-    cout << "nhap ma mon hoc:";
+    cout << "Nhap ma mon hoc:";
     cin >> mamh;
-    cout << "nhap ten mon hoc:";
+    cout << "Nhap ten mon hoc:";
     cin.ignore();
     cin.getline(tenmh, 30);
-    cout << "nhap diem TB:";
+    cout << "Nhap diem TB:";
     cin >> dtb;
-    cout << "nhap so tc:";
+    cout << "Nhap so tc:";
     cin >> sotc;
 }
+
 void monhoc::xuat1()
 {
-    cout << "ma mon hoc la:" << mamh << endl;
-    cout << "ten mon hoc la:" << tenmh << endl;
-    cout << "diem tb la:" << dtb << endl;
-    cout << "so tc  la:" << sotc << endl;
+    cout << "Ma mon hoc: " << mamh << endl;
+    cout << "Ten mon hoc: " << tenmh << endl;
+    cout << "Diem trung binh: " << DTB() << endl;
+    cout << "So tin chi: " << sotc << endl;
 }
-class sinhvien : public monhoc
+
+class sinhvien
 {
 private:
     int masv;
@@ -81,9 +84,9 @@ public:
     void xuat2();
     float dtk();
 };
+
 void sinhvien::nhap2()
 {
-
     cout << "nhap ma sinh vien:";
     cin >> masv;
     cout << "nhap ten sv:";
@@ -93,23 +96,28 @@ void sinhvien::nhap2()
     cin >> somh;
     for (int i = 0; i < somh; i++)
     {
-        arr[i].monhoc::nhap1();
+        cout << "Nhap thong tin mon hoc thu: " << i+1 << endl; 
+        arr[i].nhap1(); 
     }
 }
+
 void sinhvien::xuat2()
 {
-    cout << " ma sinh vien la:" << masv << endl;
-    cout << " ten sv la:" << tensv << endl;
-    cout << "so luong mon hoc la:" << somh << endl;
+    cout << " Ma sinh vien: " << masv << endl;
+    cout << " Ten sinh vien: " << tensv << endl;
+    cout << " So luong mon hoc: " << somh << endl;
     for (int i = 0; i < somh; i++)
     {
-        arr[i].monhoc::xuat1();
+        cout << "Thong tin mon hoc thu: " << i+1 << endl; 
+        arr[i].xuat1(); 
     }
+    cout << "Diem tong ket: " << dtk() << endl; 
 }
+
 float sinhvien::dtk()
 {
     float dtk1 = 0;
-    float tongdiem;
+    float tongdiem = 0;
     int tongtc = 0;
     for (int i = 0; i < somh; i++)
     {
@@ -119,6 +127,44 @@ float sinhvien::dtk()
     {
         tongdiem += arr[i].DTB() * arr[i].tinchi();
     }
-    dtk1 = tongdiem / tongtc;
+    if(tongtc > 0){
+        dtk1 = tongdiem / tongtc;
+    } 
     return dtk1;
+}
+
+int main(){
+    monhoc MONHOC;
+    MONHOC.nhap1();
+    MONHOC.xuat1();
+    
+    sinhvien dssv[50]; 
+    int n;
+    cout << "Nhap so luong sinh vien: ";
+    cin >> n;
+    
+    for(int i=0 ; i<n ; i++)
+    {	
+        cout << "Nhap thong tin sinh vien thu: " << i+1 << endl;
+        dssv[i].nhap2(); 	
+    }
+    
+    cout << "Danh sach sinh vien vua nhap cung voi diem tong ket: " << endl;
+    for(int i=0 ; i<n ; i++)
+    {	
+        dssv[i].xuat2(); 	
+    }
+    
+    cout << "Danh sach sinh vien bi hoc lai: " << endl;
+    int count = 0; 
+    for(int i=0 ; i<n ; i++)
+    {
+        if(dssv[i].dtk() < 4)
+        {
+            dssv[i].xuat2();
+            count++; 
+        }		 	
+    }
+    cout << "So luong sinh vien bi hoc lai: " << count << endl; 
+    return 0;
 }

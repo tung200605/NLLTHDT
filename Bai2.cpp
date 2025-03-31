@@ -4,7 +4,6 @@
 
 using namespace std;
 
-// Xây dựng lớp người
 class nguoi
 {
 protected:
@@ -16,7 +15,6 @@ public:
     void output();
 };
 
-// Xây dựng hàm nhập thông tin người
 void nguoi::input()
 {
     cin.ignore();
@@ -24,9 +22,10 @@ void nguoi::input()
     getline(cin, id);
     cout << "Ho va ten: ";
     getline(cin, name);
+
+    
 }
 
-// Xây dựng hàm in thông tin nguoi
 void nguoi::output()
 {
     cout << endl
@@ -68,8 +67,6 @@ void nhanvien::output()
     cout << setw(15) << hesoluong;
     cout << setw(12) << fixed << setprecision(3) << tinhluong() << " VND";
 }
-
-
 
 void sapxep(nhanvien dsnv[], int n)
 {

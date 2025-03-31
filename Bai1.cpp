@@ -5,9 +5,6 @@
 
 using namespace std;
 
-
-
-// Xây dựng lớp sinh viên 
 class sinhvien{
     protected:
         char id[10];
@@ -17,26 +14,21 @@ class sinhvien{
         void output();
 };
 
-
-// Xây dựng hàm nhập thông tin sinh viên
 void sinhvien :: input(){
     getchar();
-    cout << "Ma sinh vien: ";
+    cout << "ma sinh vien: ";
     cin >> id;
 
-    cout << "Ho va ten sinh vien: ";
+    cout << "ho va ten sinh vien: ";
     cin >> name;
 }
 
-// Xây dựng hàm in thông tin sinh viên
 void sinhvien :: output(){
     cout << setw(5) << id;
     cout << setw(15) << name;
 
 }
 
-// Xây dựng lớp sinh viên thương mại điện tử để mô tả sinh viên thuộc
-// chuyên ngành hệ thống thương mại điện tử từ lớp sinh viên 
 class svtmdt:public sinhvien{
     private:
         float mark;
@@ -47,21 +39,18 @@ class svtmdt:public sinhvien{
         
 };
 
-// Hàm nhập thông tin cho sinh viên tmdt
 void svtmdt::input(){
     sinhvien::input();
-    cout << "Nhap diem sinh vien: ";
+    cout << "nhap diem sinh vien: ";
     cin >> mark;
 
 }
 
-// Hàm xuất thông tin sinh viên tmdt
 void svtmdt::output(){
     sinhvien::output();
     cout << setw(10) << mark << endl;
 }
 
-// Hàm sắp xếp sinh viên theo điểm giảm dần
 void sort(svtmdt dssv[], int n){
     for( int i = 0; i <n; i ++){
         for(int j = i + 1; j < n; j ++){
@@ -72,33 +61,32 @@ void sort(svtmdt dssv[], int n){
     }
 }
 
-
 int main(){
     svtmdt dssv[20];
 
     int n;
-    cout << "Nhap so sinh vien: ";
+    cout << "nhap so sinh vien: ";
     cin >> n;
     
-    cout << "NHAP THONG TIN SINH VIEN" << endl;
+    cout << "nhap thong tin sinh vien" << endl;
     for( int i = 0; i < n; i ++){
         dssv[i].input();
     }
 
-        cout << "THONG TIN SINH VIEN" << endl;
-        cout << setw(5) << "MSV";
-        cout << setw(15) << "Ten sinh vien";
-        cout << setw(10) << "Diem:" << endl;
+        cout << "thong tin sinh vien" << endl;
+        cout << setw(5) << "msv";
+        cout << setw(15) << "ten sinh vien";
+        cout << setw(10) << "diem:" << endl;
 
     for( int i = 0; i < n; i ++){
         dssv[i].output();
     }
 
     sort(dssv, n);
-    cout << "DANH SACH SINH VIEN SAU KHI GAP XEP GIAM DAN THEO DIEM: " << endl;
-    cout << setw(5) << "MSV";
-    cout << setw(15) << "Ho va ten";
-    cout << setw(10) << "Diem" << endl;
+    cout << "danh sach sinh vien sau khi gap xep giam dan theo diem: " << endl;
+    cout << setw(5) << "msv";
+    cout << setw(15) << "ho va ten";
+    cout << setw(10) << "diem" << endl;
 
     for ( int i = 0; i < n; i ++){
         dssv[i].output();
